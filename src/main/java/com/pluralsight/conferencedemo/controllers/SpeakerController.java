@@ -24,7 +24,7 @@ public class SpeakerController {
     @GetMapping
     @RequestMapping("{id}")
     public Speaker get(@PathVariable Long id) {
-        return speakerRepository.getOne(id);
+        return speakerRepository.findById(id).get();
     }
     @GetMapping
     public List<Speaker> list() {
@@ -45,7 +45,7 @@ public class SpeakerController {
     public Speaker update(@PathVariable Long id, @RequestBody Speaker speaker) {
         //becuase this is a PUT, we expect all attributes to be passed in
         //TODO: Add Validation that all attributes are passed in, otherwise return a 400 bad payload
-        Speaker existingSession = speakerRepository.getOne(id);
+        Speaker existingSession = speakerRepository.findById(id).get();
         BeanUtils.copyProperties(speaker, existingSession, "session_id");
         return speakerRepository.saveAndFlush(existingSession);
     }

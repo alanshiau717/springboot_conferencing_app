@@ -5,6 +5,9 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.GenerationType;
 import javax.persistence.GeneratedValue;
 
@@ -12,6 +15,7 @@ import org.hibernate.annotations.Type;
 // import org.hibernate.type.BinaryType;
 
 @Entity(name = "speakers")
+@JsonIgnoreProperties({"hibernateLaztInitializer", "handler"})
 public class Speaker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +26,7 @@ public class Speaker {
     private String company;
     private String speaker_bio;
     @ManyToMany(mappedBy = "speakers")
+    @JsonIgnore
     private List<Session> sessions;
 
     @Lob

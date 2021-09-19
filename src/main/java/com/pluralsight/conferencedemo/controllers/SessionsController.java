@@ -24,7 +24,7 @@ public class SessionsController {
     @GetMapping
     @RequestMapping("{id}")
     public Session get(@PathVariable Long id) {
-        return sessionRepository.getOne(id);
+        return sessionRepository.findById(id).get();
     }
 
     @GetMapping
@@ -47,7 +47,7 @@ public class SessionsController {
     public Session update(@PathVariable Long id, @RequestBody Session session) {
         //becuase this is a PUT, we expect all attributes to be passed in
         //TODO: Add Validation that all attributes are passed in, otherwise return a 400 bad payload
-        Session existingSession = sessionRepository.getOne(id);
+        Session existingSession = sessionRepository.findById(id).get();
         BeanUtils.copyProperties(session, existingSession, "session_id");
         return sessionRepository.saveAndFlush(existingSession);
     }
