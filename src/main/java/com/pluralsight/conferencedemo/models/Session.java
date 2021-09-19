@@ -29,6 +29,9 @@ public class Session {
     public List<Speaker> getSpeakers() {
         return speakers;
     }
+    public void setSpeakers(List<Speaker> speakers) {
+        this.speakers = speakers;
+    }    
 
     public Long getSession_id() {
         return session_id;

@@ -1,9 +1,15 @@
 package com.pluralsight.conferencedemo.models;
-
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+
 import javax.persistence.GenerationType;
 import javax.persistence.GeneratedValue;
+
+import org.hibernate.annotations.Type;
+// import org.hibernate.type.BinaryType;
 
 @Entity(name = "speakers")
 public class Speaker {
@@ -15,6 +21,28 @@ public class Speaker {
     private String title;
     private String company;
     private String speaker_bio;
+    @ManyToMany(mappedBy = "speakers")
+    private List<Session> sessions;
+
+    @Lob
+    @Type(type = "org.hibernate.type.BinaryType")
+    private byte[] speaker_photo;
+
+    public byte[] getSpeaker_photo() {
+        return speaker_photo;
+    }
+
+    public void setSpeaker_photo(byte[] speaker_photo) {
+        this.speaker_photo = speaker_photo;
+    }
+
+    public List<Session> getSessions() {
+        return sessions;
+    }
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
+    }    
+
 
     public Speaker() {
 
