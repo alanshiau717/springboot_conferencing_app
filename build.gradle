@@ -5,6 +5,7 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    id 'org.springframework.boot' version '2.5.4'
 }
 
 repositories {
@@ -17,6 +18,8 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.4'
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
     runtimeOnly 'org.postgresql:postgresql:42.2.23'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
 }
